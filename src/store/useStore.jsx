@@ -80,8 +80,10 @@ const useStore = create((set, get) => ({
   selected: {
     cpu: null,
     motherboard: null,
+    cooler: null,
     ram: null,
     gpu: null,
+    storage: null,
     psu: null,
   },
   activeCategory: 'motherboard',
@@ -215,7 +217,7 @@ const useStore = create((set, get) => ({
       clearTimeout(wrongStepTimeoutId)
     }
     set({
-      selected: { cpu: null, motherboard: null, ram: null, gpu: null, psu: null },
+      selected: { cpu: null, motherboard: null, cooler: null, ram: null, gpu: null, storage: null, psu: null },
       activeCategory: 'motherboard',
       currentStep: 1,
       completedSteps: [],

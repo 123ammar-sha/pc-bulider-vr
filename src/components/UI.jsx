@@ -3,7 +3,7 @@ import { pcComponents, assemblySteps } from '../data/components'
 import { xrStore } from './Scene'
 
 const labels = {
-  cpu: 'CPU', motherboard: 'Motherboard', ram: 'RAM', gpu: 'GPU', psu: 'PSU'
+  cpu: 'CPU', motherboard: 'Motherboard', cooler: 'Cooler', ram: 'RAM', gpu: 'GPU', storage: 'Storage', psu: 'PSU'
 }
 
 export default function UI({ vrSupported = false }) {
@@ -48,25 +48,23 @@ export default function UI({ vrSupported = false }) {
 
   if (gamePhase === 'intro') {
     return (
-      <>
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          background: 'rgba(8,12,22,0.92)',
-          borderTop: '1px solid #1a2a4a',
-          padding: '14px 16px calc(14px + env(safe-area-inset-bottom))',
-          fontFamily: 'system-ui, sans-serif',
-          color: '#7cb9f5',
-          textAlign: 'center',
-          fontSize: 14,
-          lineHeight: 1.45,
-        }}>
-          {vrSupported ? (
-            <>🥽 Pakai headset Google Cardboard lalu tekan <strong>Masuk VR</strong> di kanan atas. Anda juga bisa lanjut di mode layar sentuh/desktop.</>
-          ) : (
-            <>🖥️ Perangkat ini belum mendukung WebXR VR. Lanjutkan simulasi penuh di mode layar sentuh/desktop.</>
-          )}
-        </div>
-      </>
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        background: 'rgba(8,12,22,0.92)',
+        borderTop: '1px solid #1a2a4a',
+        padding: '14px 16px calc(14px + env(safe-area-inset-bottom))',
+        fontFamily: 'system-ui, sans-serif',
+        color: '#7cb9f5',
+        textAlign: 'center',
+        fontSize: 14,
+        lineHeight: 1.45,
+      }}>
+        {vrSupported ? (
+          <>🥽 Pakai headset Google Cardboard lalu tekan <strong>Masuk VR</strong> di kanan atas. Anda juga bisa lanjut di mode layar sentuh/desktop.</>
+        ) : (
+          <>🖥️ Perangkat ini belum mendukung WebXR VR. Lanjutkan simulasi penuh di mode layar sentuh/desktop.</>
+        )}
+      </div>
     )
   }
 
@@ -118,7 +116,7 @@ export default function UI({ vrSupported = false }) {
         </div>
 
         {/* Step guide */}
-        {gamePhase === 'playing' && currentStep <= 5 && (
+        {gamePhase === 'playing' && currentStep <= 7 && (
           <div style={{ margin: '4px 12px 0', padding: '8px 12px', background: '#070f1e', borderRadius: 8, fontSize: 11, color: '#7cb9f5' }}>
             📋 <strong>Step {currentStep}:</strong> {assemblySteps.find(s => s.step === currentStep)?.desc}
           </div>

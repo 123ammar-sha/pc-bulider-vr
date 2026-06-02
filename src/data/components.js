@@ -67,6 +67,38 @@ export const pcComponents = {
       syarat: {},
     },
   ],
+  cooler: [
+    {
+      id: 'cooler-1',
+      name: 'CPU Air Cooler Standar',
+      tdpCapacity: 130,
+      color: '#4488ff',
+      icon: '❄️',
+      fungsi: 'Pendingin CPU tipe udara. Menjaga suhu prosesor tetap stabil selama bekerja.',
+      fakta: [
+        'Menggunakan heatpipe tembaga untuk menyerap panas dari CPU',
+        'Kipas membuang panas keluar dari sirip heatsink aluminium',
+        'Wajib menggunakan thermal paste agar hantaran panas optimal',
+      ],
+      pasangDi: 'motherboard',
+      syarat: {},
+    },
+    {
+      id: 'cooler-2',
+      name: 'CPU Liquid Cooler RGB',
+      tdpCapacity: 250,
+      color: '#ff22aa',
+      icon: '🌊',
+      fungsi: 'Pendingin cair (AIO) berkinerja tinggi dengan pencahayaan RGB.',
+      fakta: [
+        'Menggunakan cairan khusus untuk memindahkan panas ke radiator',
+        'Jauh lebih hening dan efisien dibanding air cooler standar',
+        'Cocok untuk CPU performa tinggi yang di-overclock',
+      ],
+      pasangDi: 'motherboard',
+      syarat: {},
+    },
+  ],
   ram: [
     {
       id: 'ram-1',
@@ -133,6 +165,38 @@ export const pcComponents = {
       syarat: {},
     },
   ],
+  storage: [
+    {
+      id: 'storage-1',
+      name: 'Hard Disk Drive 1TB',
+      capacityGb: 1000,
+      color: '#4f5b66',
+      icon: '💾',
+      fungsi: 'Penyimpanan mekanis kapasitas besar untuk file, game, dan dokumen.',
+      fakta: [
+        'Menggunakan piringan magnetik yang berputar pada 7200 RPM',
+        'Harga per gigabyte jauh lebih murah dibandingkan SSD',
+        'Lebih lambat dibanding SSD, namun ideal untuk penyimpanan sekunder',
+      ],
+      pasangDi: 'casing',
+      syarat: {},
+    },
+    {
+      id: 'storage-2',
+      name: 'Hard Disk Drive 2TB',
+      capacityGb: 2000,
+      color: '#343d46',
+      icon: '💾',
+      fungsi: 'Penyimpanan mekanis ekstra lega untuk data berukuran raksasa.',
+      fakta: [
+        'Memiliki kapasitas dua kali lipat untuk backup data jangka panjang',
+        'Sangat tahan lama untuk siklus tulis-hapus berulang-ulang',
+        'Membutuhkan kabel daya SATA dari PSU untuk beroperasi',
+      ],
+      pasangDi: 'casing',
+      syarat: {},
+    },
+  ],
   psu: [
     {
       id: 'psu-1',
@@ -171,7 +235,9 @@ export const pcComponents = {
 export const assemblySteps = [
   { step: 1, category: 'motherboard', label: 'Pasang Motherboard', desc: 'Motherboard dipasang pertama ke dalam casing sebagai fondasi.' },
   { step: 2, category: 'cpu',         label: 'Pasang CPU',         desc: 'CPU dipasang ke socket di motherboard. Hati-hati dengan pin!' },
-  { step: 3, category: 'ram',         label: 'Pasang RAM',         desc: 'RAM dimasukkan ke slot memori hingga terdengar klik.' },
-  { step: 4, category: 'gpu',         label: 'Pasang GPU',         desc: 'GPU dipasang ke slot PCIe x16 dan dikunci dengan baut.' },
-  { step: 5, category: 'psu',         label: 'Pasang PSU',         desc: 'PSU dipasang terakhir dan kabel dihubungkan ke semua komponen.' },
+  { step: 3, category: 'cooler',      label: 'Pasang CPU Cooler',  desc: 'CPU Cooler dipasang di atas CPU untuk membuang panas.' },
+  { step: 4, category: 'ram',         label: 'Pasang RAM',         desc: 'RAM dimasukkan ke slot memori hingga terdengar klik.' },
+  { step: 5, category: 'gpu',         label: 'Pasang GPU',         desc: 'GPU dipasang ke slot PCIe x16 dan dikunci dengan baut.' },
+  { step: 6, category: 'storage',     label: 'Pasang Storage',     desc: 'Hard Disk dipasang ke bracket penyimpanan di dalam casing.' },
+  { step: 7, category: 'psu',         label: 'Pasang PSU',         desc: 'PSU dipasang terakhir dan kabel dihubungkan ke semua komponen.' },
 ]

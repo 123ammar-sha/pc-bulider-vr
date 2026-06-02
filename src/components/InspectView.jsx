@@ -4,22 +4,26 @@ import { Text } from '@react-three/drei'
 import { useStore } from '../store/useStore'
 import {
   CPUModel3D, GPUModel3D, MOBOModel3D,
-  RAMModel3D, PSUModel3D
+  RAMModel3D, PSUModel3D, CoolerModel3D, StorageModel3D
 } from './Models'
 
 const modelScales = {
   cpu: 0.055,
   motherboard: 0.112,
+  cooler: 3.05,
   ram: 5.9,
   gpu: 0.1,
+  storage: 0.157,
   psu: 1.65,
 }
 
 const modelComponents = {
   cpu: (s) => <CPUModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
   motherboard: (s) => <MOBOModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
+  cooler: (s) => <CoolerModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
   ram: (s) => <RAMModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
   gpu: (s) => <GPUModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0.0, -0.6, 0]} />, // Menggeser GPU agar lebih ke bawah
+  storage: (s) => <StorageModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
   psu: (s) => <PSUModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
 }
 

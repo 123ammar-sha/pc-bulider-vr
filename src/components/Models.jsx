@@ -10,6 +10,8 @@ import psuUrl    from '../assets/models/psu.glb'
 import ssdUrl    from '../assets/models/ssd.glb'
 import mejaUrl   from '../assets/models/meja.glb'
 import kursiUrl  from '../assets/models/kursi.glb'
+import coolerUrl from '../assets/models/computer_cooler_pc_fan.glb'
+import storageUrl from '../assets/models/hard_disk.glb'
 
 // Preload model inti untuk flow beta; model dekorasi dibiarkan lazy-load.
 useGLTF.preload(cpuUrl)
@@ -17,6 +19,8 @@ useGLTF.preload(gpuUrl)
 useGLTF.preload(moboUrl)
 useGLTF.preload(ramUrl)
 useGLTF.preload(psuUrl)
+useGLTF.preload(coolerUrl)
+useGLTF.preload(storageUrl)
 
 function Model({ path, position = [0,0,0], rotation = [0,0,0], scale = 1, onClick, onPointerOver, onPointerOut }) {
   const { scene } = useGLTF(path)
@@ -42,3 +46,5 @@ export function PSUModel3D(props)   { return <Model path={psuUrl}   {...props} /
 export function SSDModel3D(props)   { return <Model path={ssdUrl}   {...props} /> }
 export function MejaModel3D(props)  { return <Model path={mejaUrl}  {...props} /> }
 export function KursiModel3D(props) { return <Model path={kursiUrl} {...props} /> }
+export function CoolerModel3D(props) { return <Model path={coolerUrl} {...props} /> }
+export function StorageModel3D(props) { return <Model path={storageUrl} {...props} /> }

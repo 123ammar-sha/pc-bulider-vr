@@ -8,14 +8,18 @@ import {
   MOBOModel3D,
   RAMModel3D,
   PSUModel3D,
+  CoolerModel3D,
+  StorageModel3D,
 } from './Models'
 
 // Konfigurasi scale dan offset per-model supaya pas di slot rak
 const shelfModelConfig = {
   cpu: { Component: CPUModel3D, scale: 0.04, position: [0, 0.04, 0.13], rotation: [0, 0, 0] },
+  cooler: { Component: CoolerModel3D, scale: 2.025, position: [0, 0.02, 0.15], rotation: [0, 0, 0] },
   motherboard: { Component: MOBOModel3D, scale: 0.08, position: [0, -0.01, 0.2], rotation: [0, 0, 0] },
   ram: { Component: RAMModel3D, scale: 2.8, position: [0, 0.08, 0.14], rotation: [0, 0, 0] },
   gpu: { Component: GPUModel3D, scale: 0.05, position: [-0.2, 0.03, 0.42], rotation: [0, 0, 0] },
+  storage: { Component: StorageModel3D, scale: 0.0758, position: [-0.075, 0.12, 0.15], rotation: [0, Math.PI * 1.32, 0] },
   psu: { Component: PSUModel3D, scale: 1.70, position: [0, 0.02, 0.15], rotation: [0, 0, 0] },
 }
 
@@ -63,6 +67,12 @@ function ShelfItem({ component, category, position }) {
           onGaze: handleGrab,
         }}
       >
+        {/* Invisible hitbox mesh to guarantee 100% reliable raycasting and gaze actions */}
+        <mesh position={[0, 0.05, 0.2]}>
+          <boxGeometry args={[0.34, 0.32, 0.55]} />
+          <meshBasicMaterial visible={false} />
+        </mesh>
+
         {ModelComponent ? (
           <ModelComponent
             scale={config.scale}
@@ -99,7 +109,7 @@ function ShelfItem({ component, category, position }) {
 // Seluruh rak komponen
 export default function ComponentShelf({ position = [0, 0, 0], scale = 1.0 }) {
   const selected = useStore(s => s.selected)
-  const categories = ['motherboard', 'cpu', 'ram', 'gpu', 'psu']
+  const categories = ['motherboard', 'cpu', 'cooler', 'ram', 'gpu', 'storage', 'psu']
 
   return (
     <group position={position} scale={scale}>
@@ -127,7 +137,7 @@ export default function ComponentShelf({ position = [0, 0, 0], scale = 1.0 }) {
             key={cat}
             component={item}
             category={cat}
-            position={[0, 1.1 - i * 0.42, 0.2]}
+            position={[0, 1.15 - i * 0.38, 0.2]}
           />
         )
       })}

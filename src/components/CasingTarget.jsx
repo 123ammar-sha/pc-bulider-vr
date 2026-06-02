@@ -5,7 +5,7 @@ import { useStore } from '../store/useStore'
 import { assemblySteps } from '../data/components'
 import {
   CPUModel3D, GPUModel3D, MOBOModel3D,
-  RAMModel3D, PSUModel3D
+  RAMModel3D, PSUModel3D, CoolerModel3D, StorageModel3D
 } from './Models'
 
 // Mengubah nilai rotasi pada sumbu X agar motherboard berdiri tegak
@@ -23,10 +23,17 @@ const slotConfig = {
     slotSize: [0.42, 0.58, 0.06],
   },
   cpu: {
-    pos: [moboMount.pos[0] - -0.047, moboMount.pos[1] - -0.13, moboMount.pos[2] + 0.04],
+    pos: [moboMount.pos[0] - -0.042, moboMount.pos[1] - -0.125, moboMount.pos[2] + 0.02],
     rot: moboMount.rot,
-    scale: 0.0215,
+    scale: 0.04,
     slotSize: [0.16, 0.16, 0.05],
+  },
+  cooler: {
+    pos: [moboMount.pos[0] - -0.04, moboMount.pos[1] - -0.125, moboMount.pos[2] + 0.07],
+
+    rot: [0, Math.PI * 1.00, 0],
+    scale: 2.5,
+    slotSize: [0.18, 0.18, 0.10],
   },
   ram: {
     pos: [moboMount.pos[0] - -0.215, moboMount.pos[1] - -0.125, moboMount.pos[2] + 0.08],
@@ -40,6 +47,12 @@ const slotConfig = {
     scale: 0.058,
     slotSize: [0.34, 0.10, 0.08],
   },
+  storage: {
+    pos: [0.38, -0.3, 0.07],
+    rot: [Math.PI / 6.0, 0, Math.PI / 2], // Dibuat tertidur dengan rotasi X, lalu diputar di bidang datar menggunakan rotasi Z agar tidak miring secara diagonal
+    scale: 0.1175,
+    slotSize: [0.22, 0.08, 0.14],
+  },
   psu: {
     pos: [-0.3, 0.45, 0.00],
     rot: [0, Math.PI / 2, 0],
@@ -52,9 +65,11 @@ const modelMap = {
   cpu: (s, r) => <CPUModel3D scale={s} rotation={[r[0] - Math.PI / 2, r[1], r[2]]} />,
 
   motherboard: (s, r) => <MOBOModel3D scale={s} rotation={r} />,
+  cooler: (s, r) => <CoolerModel3D scale={s} rotation={[r[0] - Math.PI / 2, r[1], r[2]]} />,
   ram: (s, r) => <RAMModel3D scale={s} rotation={[r[0] + Math.PI / 2, r[1], r[2] + Math.PI / 2]} />,
 
   gpu: (s, r) => <GPUModel3D scale={s} rotation={[r[0] + Math.PI / 2, r[1] + Math.PI, r[2]]} />,
+  storage: (s, r) => <StorageModel3D scale={s} rotation={[r[0], r[1], r[2]]} />,
 
   psu: (s, r) => <PSUModel3D scale={s} rotation={[r[0] + Math.PI, r[1] + Math.PI, r[2]]} />,
 }
@@ -118,6 +133,16 @@ function AnimatedPlacedComponent({ category, config }) {
   )
 }
 
+const staticOffsetRotations = {
+  cpu: [-Math.PI / 2, 0, 0],
+  motherboard: [0, 0, 0],
+  cooler: [-Math.PI / 2, 0, 0],
+  ram: [Math.PI / 2, 0, Math.PI / 2],
+  gpu: [Math.PI / 2, Math.PI, 0],
+  storage: [0, 0, 0],
+  psu: [Math.PI, Math.PI, 0],
+}
+
 function SlotTarget({ category, config }) {
   const currentStep = useStore(s => s.currentStep)
   const inspecting = useStore(s => s.inspecting)
@@ -141,36 +166,40 @@ function SlotTarget({ category, config }) {
     if (isInspectingThis) placeComponent()
   }
 
-  return (
-    <group position={config.pos}>
-      {/* Outline slot — gaze target jika bisa dipasang */}
-      <mesh
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        onClick={handlePlace}
-        userData={{
-          gazeTarget: isInspectingThis,
-          onGaze: handlePlace,
-        }}
-      >
-        <boxGeometry args={config.slotSize || [0.24, 0.24, 0.24]} />
-        <meshBasicMaterial
-          color={slotColor}
-          wireframe
-          transparent
-          opacity={hovered ? 1.0 : 0.7}
-        />
-      </mesh>
+  const offsetRot = staticOffsetRotations[category] || [0, 0, 0]
 
-      {/* Glow di tengah slot */}
-      <mesh>
-        <boxGeometry args={config.slotSize || [0.20, 0.20, 0.20]} />
-        <meshBasicMaterial
-          color={slotColor}
-          transparent
-          opacity={0.08}
-        />
-      </mesh>
+  return (
+    <group position={config.pos} rotation={config.rot}>
+      <group rotation={offsetRot}>
+        {/* Outline slot — gaze target jika bisa dipasang */}
+        <mesh
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+          onClick={handlePlace}
+          userData={{
+            gazeTarget: isInspectingThis,
+            onGaze: handlePlace,
+          }}
+        >
+          <boxGeometry args={config.slotSize || [0.24, 0.24, 0.24]} />
+          <meshBasicMaterial
+            color={slotColor}
+            wireframe
+            transparent
+            opacity={hovered ? 1.0 : 0.7}
+          />
+        </mesh>
+
+        {/* Glow di tengah slot */}
+        <mesh>
+          <boxGeometry args={config.slotSize || [0.20, 0.20, 0.20]} />
+          <meshBasicMaterial
+            color={slotColor}
+            transparent
+            opacity={0.08}
+          />
+        </mesh>
+      </group>
 
       {/* Label */}
       <Text
@@ -254,15 +283,7 @@ export default function CasingTarget() {
 
       {/* PSU shroud bay visual (dihapus atas permintaan pengguna) */}
 
-      {/* Fan mount belakang */}
-      <mesh position={[0.48, 0.35, -0.2]}>
-        <cylinderGeometry args={[0.11, 0.11, 0.03, 24]} />
-        <meshStandardMaterial color="#2f3643" metalness={0.55} roughness={0.42} />
-      </mesh>
-      <mesh position={[0.48, 0.35, -0.18]}>
-        <ringGeometry args={[0.07, 0.11, 24]} />
-        <meshBasicMaterial color="#5f6f88" />
-      </mesh>
+
 
       {/* Visual socket CPU di atas motherboard */}
       <mesh position={[slotConfig.cpu.pos[0], slotConfig.cpu.pos[1] - 0.01, slotConfig.cpu.pos[2] - 0.03]}>

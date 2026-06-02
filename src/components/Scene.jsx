@@ -235,9 +235,9 @@ function CompletePanel() {
       </Text>
 
       {/* Hasil komponen */}
-      {['motherboard', 'cpu', 'ram', 'gpu', 'psu'].map((cat, i) => (
+      {['motherboard', 'cpu', 'cooler', 'ram', 'gpu', 'storage', 'psu'].map((cat, i) => (
         <Text key={cat}
-          position={[-0.6, 0.2 - i * 0.13, 0.02]}
+          position={[-0.6, 0.3 - i * 0.09, 0.02]}
           fontSize={0.048} color={completedSteps.includes(cat) ? '#4fc' : '#f66'}
           anchorX="left" anchorY="middle">
           {completedSteps.includes(cat) ? '✓' : '✗'} {cat.toUpperCase()}
@@ -406,7 +406,7 @@ function SceneContent({ isVR }) {
 
       {gamePhase === 'playing' && (
         <>
-          <ComponentShelf position={[-2.0, 0, -0.5]} scale={1.4} />
+          <ComponentShelf position={[-2.0, 0.65, -0.5]} scale={1.4} />
           {/* posisi casing */}
           <group position={[0.0, 0.9, -1.8]} scale={1.4}>
             <CasingTarget />
@@ -419,7 +419,7 @@ function SceneContent({ isVR }) {
 
       {gamePhase === 'complete' && (
         <>
-          <ComponentShelf position={[-2.0, 0, -0.5]} scale={1.4} />
+          <ComponentShelf position={[-2.0, 0.65, -0.5]} scale={1.4} />
           {/* posisi casing */}
           <group position={[0.0, 0.9, -1.8]} scale={1.4}>
             <CasingTarget />
