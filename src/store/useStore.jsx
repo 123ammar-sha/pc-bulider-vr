@@ -43,16 +43,7 @@ function getCompatibilityIssuesFromSelected(selected) {
     }
   }
 
-  if (selected.psu?.wattage) {
-    const estimatedNeed = estimateSystemWatt(selected)
-    const recommendedMin = Math.ceil(estimatedNeed * 1.2)
-    if (selected.psu.wattage < recommendedMin) {
-      issues.push({
-        msg: `Daya PSU kurang! PSU: ${selected.psu.wattage}W, kebutuhan rekomendasi: ${recommendedMin}W`,
-        edukasi: 'Sisakan headroom daya agar sistem stabil saat beban puncak.',
-      })
-    }
-  }
+
 
   return issues
 }
@@ -66,7 +57,7 @@ function deriveProgress(selected) {
   return {
     completedSteps,
     currentStep,
-    gamePhase: hasAllCoreParts && !hasIssues ? 'complete' : 'playing',
+    gamePhase: hasAllCoreParts ? 'complete' : 'playing',
   }
 }
 

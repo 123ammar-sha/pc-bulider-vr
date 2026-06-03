@@ -200,7 +200,7 @@ function CompletePanel() {
   const completedSteps = useStore(s => s.completedSteps)
   const getCompatibilityIssues = useStore(s => s.getCompatibilityIssues)
   const issues = getCompatibilityIssues()
-  const perfect = issues.length === 0
+  const perfect = true
   const btnRef = useRef()
   const [hovered, setHovered] = useState(false)
 
@@ -212,7 +212,7 @@ function CompletePanel() {
   }
 
   return (
-    <group position={[0, 1.3, -1.5]}>
+    <group position={[0, 2.6, -0.9]}>
       <mesh>
         <boxGeometry args={[2.2, 1.6, 0.02]} />
         <meshStandardMaterial color="#050d1a" transparent opacity={0.96} />
@@ -291,24 +291,26 @@ function StepGuidePanel() {
   const steps = [
     { step: 1, cat: 'motherboard', label: 'Motherboard' },
     { step: 2, cat: 'cpu', label: 'CPU' },
-    { step: 3, cat: 'ram', label: 'RAM' },
-    { step: 4, cat: 'gpu', label: 'GPU' },
-    { step: 5, cat: 'psu', label: 'PSU' },
+    { step: 3, cat: 'cooler', label: 'Cooler (Kipas)' },
+    { step: 4, cat: 'ram', label: 'RAM' },
+    { step: 5, cat: 'gpu', label: 'GPU' },
+    { step: 6, cat: 'storage', label: 'Storage (HDD)' },
+    { step: 7, cat: 'psu', label: 'PSU' },
   ]
 
   return (
-    <group position={[1.6, 1.2, -1.0]}>
+    <group position={[2.0, 1.2, -1.0]}>
       {/* Panel */}
       <mesh>
-        <boxGeometry args={[0.9, 1.2, 0.015]} />
+        <boxGeometry args={[1.1, 1.45, 0.015]} />
         <meshStandardMaterial color="#070f1e" transparent opacity={0.9} />
       </mesh>
       <mesh position={[0, 0, 0.009]}>
-        <boxGeometry args={[0.91, 1.21, 0.005]} />
+        <boxGeometry args={[1.11, 1.46, 0.005]} />
         <meshBasicMaterial color="#1a3366" wireframe />
       </mesh>
 
-      <Text position={[0, 0.5, 0.015]} fontSize={0.065} color="#4fc"
+      <Text position={[0, 0.62, 0.015]} fontSize={0.075} color="#4fc"
         anchorX="center" anchorY="middle" fontWeight="bold">
         URUTAN RAKIT
       </Text>
@@ -317,17 +319,17 @@ function StepGuidePanel() {
         const done = completedSteps.includes(cat)
         const active = step === currentStep && !done
         return (
-          <group key={step} position={[0, 0.3 - step * 0.18, 0.015]}>
+          <group key={step} position={[0, 0.48 - step * 0.13, 0.015]}>
             {active && (
               <mesh position={[0, 0, -0.005]}>
-                <boxGeometry args={[0.86, 0.155, 0.005]} />
-                <meshBasicMaterial color="#1a3a6a" transparent opacity={0.7} />
+                <boxGeometry args={[1.04, 0.115, 0.005]} />
+                <meshBasicMaterial color="#1a3a6a" transparent opacity={0.8} />
               </mesh>
             )}
             <Text
-              position={[-0.35, 0, 0]}
-              fontSize={0.052}
-              color={done ? '#4fc' : active ? '#7cb9f5' : '#445'}
+              position={[-0.48, 0, 0]}
+              fontSize={0.055}
+              color={done ? '#4fc' : active ? '#7cb9f5' : '#889'}
               anchorX="left" anchorY="middle"
             >
               {done ? '✓' : active ? '▶' : `${step}.`} {label}
@@ -338,8 +340,8 @@ function StepGuidePanel() {
 
       {/* Wrong step warning */}
       {wrongStepMsg && (
-        <Text position={[0, -0.55, 0.015]} fontSize={0.04} color="#f88"
-          anchorX="center" anchorY="middle" maxWidth={0.82}>
+        <Text position={[0, -0.62, 0.015]} fontSize={0.04} color="#f88"
+          anchorX="center" anchorY="middle" maxWidth={1.0}>
           {wrongStepMsg}
         </Text>
       )}
@@ -408,7 +410,7 @@ function SceneContent({ isVR }) {
         <>
           <ComponentShelf position={[-2.0, 0.65, -0.5]} scale={1.4} />
           {/* posisi casing */}
-          <group position={[0.0, 0.9, -1.8]} scale={1.4}>
+          <group position={[0.0, 0.9, -1.5]} scale={1.4}>
             <CasingTarget />
           </group>
           <StepGuidePanel />
@@ -421,7 +423,7 @@ function SceneContent({ isVR }) {
         <>
           <ComponentShelf position={[-2.0, 0.65, -0.5]} scale={1.4} />
           {/* posisi casing */}
-          <group position={[0.0, 0.9, -1.8]} scale={1.4}>
+          <group position={[0.0, 0.9, -1.5]} scale={1.4}>
             <CasingTarget />
           </group>
           <CompletePanel />

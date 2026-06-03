@@ -152,6 +152,8 @@ function SlotTarget({ category, config }) {
   const isNextSlot = stepInfo?.step === currentStep
   const isInspectingThis = inspecting?.category === category
 
+  if (!isInspectingThis) return null
+
   // Warna slot:
   // hijau = sedang inspecting komponen ini, siap dipasang
   // kuning = ini slot berikutnya
@@ -285,11 +287,7 @@ export default function CasingTarget() {
 
 
 
-      {/* Visual socket CPU di atas motherboard */}
-      <mesh position={[slotConfig.cpu.pos[0], slotConfig.cpu.pos[1] - 0.01, slotConfig.cpu.pos[2] - 0.03]}>
-        <boxGeometry args={[0.13, 0.13, 0.01]} />
-        <meshStandardMaterial color="#9aa3b3" metalness={0.55} roughness={0.35} />
-      </mesh>
+
 
       {/* Visual slot RAM di samping CPU (dihapus/dikomentari agar tidak memotong RAM yang sudah terpasang) */}
       {/*

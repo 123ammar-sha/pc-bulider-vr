@@ -129,7 +129,7 @@ export default function LabRoom() {
       {/* ── MEJA UTAMA — pakai GLB ── */}
       {/* position Y disesuaikan agar permukaan meja setinggi -0.54 (diperbesar 50% dari scale 0.9 ke 1.35) */}
       <MejaModel3D
-        position={[0, -1.2, -1.8]}
+        position={[0, -1.2, -1.5]}
         rotation={[0, -1.6, 0]}
         scale={1.35}
       />
@@ -137,7 +137,7 @@ export default function LabRoom() {
       {/* ── KURSI — pakai GLB ── */}
       {/* Kursi di meja utama */}
       <KursiModel3D
-        position={[-0.1, -1.2, -0.2]}
+        position={[-0.1, -1.2, 0.1]}
         rotation={[0, Math.PI, 0]}
         scale={0.85}
       />
