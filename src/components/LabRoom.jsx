@@ -71,25 +71,27 @@ function Poster({ position, rotation, title, lines = [] }) {
 // Indikator langkah / panduan di dinding
 function StepBoard({ position, rotation }) {
   const steps = [
-    '1️⃣  Pasang Motherboard',
-    '2️⃣  Pasang CPU',
-    '3️⃣  Pasang RAM',
-    '4️⃣  Pasang GPU',
-    '5️⃣  Pasang PSU',
-  ]
+  '1️  Pasang Motherboard',
+  '2️  Pasang CPU',
+  '3️  Pasang Cooler (Kipas)',
+  '4️  Pasang RAM',
+  '5️  Pasang GPU',
+  '6️  Pasang Storage (HDD)',
+  '7️  Pasang PSU',
+]
   return (
     <group position={position} rotation={rotation}>
       <mesh>
-        <boxGeometry args={[1.4, 1.6, 0.02]} />
+        <boxGeometry args={[1.4, 2.2, 0.02]} />
         <meshStandardMaterial color="#071020" />
       </mesh>
-      <Text position={[0, 0.65, 0.02]} fontSize={0.09} color="#4fc"
+      <Text position={[0, 0.9, 0.02]} fontSize={0.09} color="#4fc"
         anchorX="center" anchorY="middle" fontWeight="bold">
         URUTAN RAKIT
       </Text>
       {steps.map((s, i) => (
-        <Text key={i} position={[0, 0.42 - i * 0.25, 0.02]}
-          fontSize={0.06} color="#ccd" anchorX="center" anchorY="middle" maxWidth={1.2}>
+        <Text key={i} position={[-0.4, 0.65 - i * 0.25, 0.02]}
+          fontSize={0.06} color="#ccd" anchorX="" anchorY="middle" maxWidth={1.2}>
           {s}
         </Text>
       ))}
@@ -103,10 +105,10 @@ export default function LabRoom() {
       {/* ── LANTAI ── */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.2, 0]} receiveShadow>
         <planeGeometry args={[12, 10]} />
-        <meshStandardMaterial color="#0d1520" roughness={0.9} metalness={0.1} />
+        <meshStandardMaterial color="#0e151e" roughness={0.9} metalness={0.1} />
       </mesh>
       {/* Grid lantai */}
-      <gridHelper args={[12, 24, '#1a2a3a', '#131d2a']} position={[0, -1.19, 0]} />
+      {/* <gridHelper args={[12, 24, '#1a2a3a', '#131d2a']} position={[0, -1.19, 0]} /> */}
 
       {/* ── LANGIT-LANGIT ── */}
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 3.5, 0]} receiveShadow>
@@ -115,17 +117,17 @@ export default function LabRoom() {
       </mesh>
 
       {/* ── DINDING ── */}
-      <Wall position={[0, 1.2, -5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#111a28" />
-      <Wall position={[-6, 1.2, 0]} rotation={[0, Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#0f1822" />
-      <Wall position={[6, 1.2, 0]} rotation={[0, -Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#0f1822" />
-      <Wall position={[0, 1.2, 5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#111a28" />
+      <Wall position={[0, 1.2, -5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#363c44" />
+      <Wall position={[-6, 1.2, 0]} rotation={[0, Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#363c44" />
+      <Wall position={[6, 1.2, 0]} rotation={[0, -Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#363c44" />
+      <Wall position={[0, 1.2, 5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#363c44" />
 
       {/* ── LAMPU NEON ── */}
       <NeonLight position={[-2.5, 3.3, -2]} color="#ffffff" />
       <NeonLight position={[2.5, 3.3, -2]} color="#c8e8ff" />
       <NeonLight position={[0, 3.3, 1]} color="#c8e8ff" />
-      <NeonLight position={[-4, 2, -4.8]} color="#ffffff" />
-      <NeonLight position={[4, 2, -4.8]} color="#ffffff" />
+      <NeonLight position={[-4.5, 2, -4.8]} color="#ffffff" />
+      <NeonLight position={[4.5, 2, -4.8]} color="#ffffff" />
 
       {/* ── MEJA UTAMA — pakai GLB ── */}
       {/* position Y disesuaikan agar permukaan meja setinggi -0.54 (diperbesar 50% dari scale 0.9 ke 1.35) */}
@@ -145,12 +147,11 @@ export default function LabRoom() {
 
       {/* ── RAK DINDING ── */}
       <WallShelf position={[4.5, 0.5, -4.8]} />
-      <WallShelf position={[4.5, 1.2, -4.8]} />
       <WallShelf position={[-4.5, 0.5, -4.8]} />
 
       {/* ── POSTER EDUKASI ── */}
       <Poster
-        position={[-4, 1.2, -4.85]}
+        position={[-4.5, 1.2, -4.85]}
         rotation={[0, 0, 0]}
         title="APA ITU CPU?"
         lines={[
@@ -161,7 +162,7 @@ export default function LabRoom() {
         ]}
       />
       <Poster
-        position={[4, 1.2, -4.85]}
+        position={[4.5, 1.2, -4.85]}
         rotation={[0, 0, 0]}
         title="APA ITU GPU?"
         lines={[
@@ -176,7 +177,7 @@ export default function LabRoom() {
       <StepBoard position={[0, 1.5, -4.85]} rotation={[0, 0, 0]} />
 
       {/* ── AKSEN RGB LANTAI ── */}
-      {[-3, 0, 3].map((x, i) => (
+      {/* {[-3, 0, 3].map((x, i) => (
         <mesh key={i} position={[x, -1.18, -1]} rotation={[-Math.PI / 2, 0, 0]}>
           <planeGeometry args={[0.06, 8]} />
           <meshStandardMaterial
@@ -187,7 +188,7 @@ export default function LabRoom() {
             opacity={0.7}
           />
         </mesh>
-      ))}
+      ))} */}
     </group>
   )
 }
