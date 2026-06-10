@@ -14,8 +14,8 @@ import {
 
 // Konfigurasi scale dan offset per-model supaya pas di slot rak
 const shelfModelConfig = {
-  cpu: { Component: CPUModel3D, scale: 0.04, position: [0, 0.04, 0.13], rotation: [0, 0, 0] },
-  cooler: { Component: CoolerModel3D, scale: 2.025, position: [0, 0.02, 0.15], rotation: [0, 0, 0] },
+  cpu: { Component: CPUModel3D, scale: 0.08, position: [0, 0.07, 0.13], rotation: [Math.PI / 2, 0, 0] },
+  cooler: { Component: CoolerModel3D, scale: 0.015, position: [0, 0.04, 0.15], rotation: [0, 0, 0] },
   motherboard: { Component: MOBOModel3D, scale: 0.08, position: [0, -0.01, 0.2], rotation: [0, 0, 0] },
   ram: { Component: RAMModel3D, scale: 2.8, position: [0, 0.08, 0.14], rotation: [0, 0, 0] },
   gpu: { Component: GPUModel3D, scale: 0.05, position: [-0.2, 0.03, 0.42], rotation: [0, 0, 0] },

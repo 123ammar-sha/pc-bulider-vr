@@ -23,16 +23,16 @@ const slotConfig = {
     slotSize: [0.42, 0.58, 0.06],
   },
   cpu: {
-    pos: [moboMount.pos[0] - -0.042, moboMount.pos[1] - -0.125, moboMount.pos[2] + 0.02],
-    rot: moboMount.rot,
-    scale: 0.04,
+    pos: [moboMount.pos[0] - -0.047, moboMount.pos[1] - -0.121, moboMount.pos[2] + 0.02],
+    rot: [0, Math.PI * 1.00, Math.PI],
+    scale: 0.05,
     slotSize: [0.16, 0.16, 0.05],
   },
   cooler: {
-    pos: [moboMount.pos[0] - -0.04, moboMount.pos[1] - -0.125, moboMount.pos[2] + 0.07],
+    pos: [moboMount.pos[0] - -0.05, moboMount.pos[1] - -0.125, moboMount.pos[2] + 0.07],
 
     rot: [0, Math.PI * 1.00, 0],
-    scale: 2.5,
+    scale: 0.015,
     slotSize: [0.18, 0.18, 0.10],
   },
   ram: {

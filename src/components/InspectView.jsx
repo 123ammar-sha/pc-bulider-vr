@@ -8,9 +8,9 @@ import {
 } from './Models'
 
 const modelScales = {
-  cpu: 0.055,
+  cpu: 0.155,
   motherboard: 0.112,
-  cooler: 3.05,
+  cooler: 0.04,
   ram: 5.9,
   gpu: 0.1,
   storage: 0.157,
@@ -18,9 +18,9 @@ const modelScales = {
 }
 
 const modelComponents = {
-  cpu: (s) => <CPUModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
-  motherboard: (s) => <MOBOModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
-  cooler: (s) => <CoolerModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
+  cpu: (s) => <CPUModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />,
+  motherboard: (s) => <MOBOModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />,
+  cooler: (s) => <CoolerModel3D scale={s} rotation={[Math.PI / 2, 2, 0]} position={[0, 0, 0]} />,
   ram: (s) => <RAMModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
   gpu: (s) => <GPUModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0.0, -0.6, 0]} />, // Menggeser GPU agar lebih ke bawah
   storage: (s) => <StorageModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
