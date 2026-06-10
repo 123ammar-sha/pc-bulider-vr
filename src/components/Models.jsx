@@ -12,6 +12,7 @@ import mejaUrl from '../assets/models/meja.glb'
 import kursiUrl from '../assets/models/kursi.glb'
 import coolerUrl from '../assets/models/free_amd_wraith_stealth_cpu_cooler.glb'
 import storageUrl from '../assets/models/hard_disk.glb'
+import caseUrl from '../assets/models/corsair_4000d__pc_case.glb'
 
 // Preload model inti untuk flow beta; model dekorasi dibiarkan lazy-load.
 useGLTF.preload(cpuUrl)
@@ -21,9 +22,20 @@ useGLTF.preload(ramUrl)
 useGLTF.preload(psuUrl)
 useGLTF.preload(coolerUrl)
 useGLTF.preload(storageUrl)
+useGLTF.preload(caseUrl)
+
+import { Box3, Vector3 } from 'three'
 
 function Model({ path, position = [0, 0, 0], rotation = [0, 0, 0], scale = 1, onClick, onPointerOver, onPointerOut }) {
   const { scene } = useGLTF(path)
+  useMemo(() => {
+    if (path.includes('corsair')) {
+      const box = new Box3().setFromObject(scene)
+      const size = new Vector3()
+      box.getSize(size)
+      console.log("CASE MODEL SIZE IS:", size.x, size.y, size.z)
+    }
+  }, [scene, path])
   const cloned = useMemo(() => scene.clone(true), [scene])
   return (
     <primitive
@@ -48,3 +60,4 @@ export function MejaModel3D(props) { return <Model path={mejaUrl}  {...props} />
 export function KursiModel3D(props) { return <Model path={kursiUrl} {...props} /> }
 export function CoolerModel3D(props) { return <Model path={coolerUrl} {...props} /> }
 export function StorageModel3D(props) { return <Model path={storageUrl} {...props} /> }
+export function CasingModel3D(props) { return <Model path={caseUrl} {...props} /> }

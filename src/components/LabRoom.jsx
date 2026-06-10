@@ -118,13 +118,14 @@ export default function LabRoom() {
       <Wall position={[0, 1.2, -5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#111a28" />
       <Wall position={[-6, 1.2, 0]} rotation={[0, Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#0f1822" />
       <Wall position={[6, 1.2, 0]} rotation={[0, -Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#0f1822" />
+      <Wall position={[0, 1.2, 5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#111a28" />
 
       {/* ── LAMPU NEON ── */}
-      <NeonLight position={[-2.5, 3.3, -2]} color="#c8e8ff" />
+      <NeonLight position={[-2.5, 3.3, -2]} color="#ffffff" />
       <NeonLight position={[2.5, 3.3, -2]} color="#c8e8ff" />
       <NeonLight position={[0, 3.3, 1]} color="#c8e8ff" />
-      <NeonLight position={[-4, 2, -4.8]} color="#0044ff" />
-      <NeonLight position={[4, 2, -4.8]} color="#0044ff" />
+      <NeonLight position={[-4, 2, -4.8]} color="#ffffff" />
+      <NeonLight position={[4, 2, -4.8]} color="#ffffff" />
 
       {/* ── MEJA UTAMA — pakai GLB ── */}
       {/* position Y disesuaikan agar permukaan meja setinggi -0.54 (diperbesar 50% dari scale 0.9 ke 1.35) */}

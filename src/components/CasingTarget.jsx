@@ -5,12 +5,12 @@ import { useStore } from '../store/useStore'
 import { assemblySteps } from '../data/components'
 import {
   CPUModel3D, GPUModel3D, MOBOModel3D,
-  RAMModel3D, PSUModel3D, CoolerModel3D, StorageModel3D
+  RAMModel3D, PSUModel3D, CoolerModel3D, StorageModel3D, CasingModel3D
 } from './Models'
 
 // Mengubah nilai rotasi pada sumbu X agar motherboard berdiri tegak
 const moboMount = {
-  pos: [-0.2, -0.05, -0.16],
+  pos: [-0.2, 0.095, -0.2],
   rot: [Math.PI / 2, 2 * Math.PI, 0], // Diputar 90 derajat ke kiri dari posisi sebelumnya
   scale: 0.159,
 }
@@ -42,21 +42,21 @@ const slotConfig = {
     slotSize: [0.22, 0.12, 0.05],
   },
   gpu: {
-    pos: [0.01, -0.25, 0.27],
+    pos: [0.001, -0.089, 0.25],
     rot: [Math.PI / 2, 0, 0],
     scale: 0.058,
     slotSize: [0.34, 0.10, 0.08],
   },
   storage: {
-    pos: [0.38, -0.3, 0.07],
-    rot: [Math.PI / 6.0, 0, Math.PI / 2], // Dibuat tertidur dengan rotasi X, lalu diputar di bidang datar menggunakan rotasi Z agar tidak miring secara diagonal
+    pos: [0.28, -0.368, -0.02],
+    rot: [Math.PI / 2, Math.PI / 3.1, 0], // Koreksi roll kecil agar hardisk terlihat rata
     scale: 0.1175,
     slotSize: [0.22, 0.08, 0.14],
   },
   psu: {
-    pos: [-0.3, 0.45, 0.00],
+    pos: [-0.35, -0.4, -0.004],
     rot: [0, Math.PI / 2, 0],
-    scale: 2.8775,
+    scale: 2.35,
     slotSize: [0.30, 0.16, 0.14],
   },
 }
@@ -227,61 +227,7 @@ export default function CasingTarget() {
 
   return (
     <group>
-      {/* Frame casing terbuka agar interior terlihat jelas */}
-      <mesh position={[0, 0.6, 0]}>
-        <boxGeometry args={[1.12, 0.04, 0.58]} />
-        <meshStandardMaterial color="#6f7480" metalness={0.65} roughness={0.35} />
-      </mesh>
-      <mesh position={[0, -0.5, 0]}>
-        <boxGeometry args={[1.12, 0.04, 0.58]} />
-        <meshStandardMaterial color="#6f7480" metalness={0.65} roughness={0.35} />
-      </mesh>
-      <mesh position={[-0.54, 0.05, 0]}>
-        <boxGeometry args={[0.04, 1.1, 0.58]} />
-        <meshStandardMaterial color="#6f7480" metalness={0.65} roughness={0.35} />
-      </mesh>
-      <mesh position={[0.54, 0.05, 0]}>
-        <boxGeometry args={[0.04, 1.1, 0.58]} />
-        <meshStandardMaterial color="#6f7480" metalness={0.65} roughness={0.35} />
-      </mesh>
-      <mesh position={[0, 0.05, -0.27]}>
-        <boxGeometry args={[1.12, 1.1, 0.04]} />
-        <meshStandardMaterial color="#727886" metalness={0.58} roughness={0.42} />
-      </mesh>
-      <mesh position={[0, 0.05, -0.23]}>
-        <boxGeometry args={[1.04, 1.02, 0.01]} />
-        <meshStandardMaterial color="#252b36" metalness={0.18} roughness={0.82} />
-      </mesh>
-
-      {/* Panel kaca samping transparan */}
-      <mesh position={[0, 0.05, 0.285]}>
-        <boxGeometry args={[1.12, 1.12, 0.02]} />
-        <meshStandardMaterial color="#66a6ff" transparent opacity={0.08} />
-      </mesh>
-
-      {/* RGB strip bawah */}
-      <mesh position={[0, -0.45, 0.2]}>
-        <boxGeometry args={[0.8, 0.04, 0.1]} />
-        <meshStandardMaterial
-          color="#00ffff"
-          emissive="#00ffff"
-          emissiveIntensity={2}
-        />
-      </mesh>
-
-      {/* Motherboard tray visual supaya peletakan lebih masuk akal */}
-      <mesh position={[moboMount.pos[0], moboMount.pos[1], -0.19]}>
-        <boxGeometry args={[0.68, 0.84, 0.02]} />
-        <meshStandardMaterial color="#353b47" metalness={0.3} roughness={0.72} />
-      </mesh>
-      <mesh position={[moboMount.pos[0], 0.52, -0.18]}>
-        <boxGeometry args={[0.68, 0.02, 0.10]} />
-        <meshStandardMaterial color="#464d5d" metalness={0.42} roughness={0.52} />
-      </mesh>
-      <mesh position={[0.26, 0.1, -0.19]}>
-        <boxGeometry args={[0.28, 0.84, 0.02]} />
-        <meshStandardMaterial color="#3b4250" metalness={0.35} roughness={0.67} />
-      </mesh>
+      <CasingModel3D scale={2.0} position={[0, -0.58, 0]} rotation={[0, Math.PI / 2, 0]} />
 
       {/* PSU shroud bay visual (dihapus atas permintaan pengguna) */}
 
