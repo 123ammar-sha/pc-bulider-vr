@@ -21,7 +21,7 @@ const modelComponents = {
   cpu: (s) => <CPUModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />,
   motherboard: (s) => <MOBOModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />,
   cooler: (s) => <CoolerModel3D scale={s} rotation={[Math.PI / 2, 2, 0]} position={[0, 0, 0]} />,
-  ram: (s) => <RAMModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
+  ram: (s) => <RAMModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />,
   gpu: (s) => <GPUModel3D scale={s} rotation={[Math.PI / 2, 0, 0]} position={[0.0, -0.6, 0]} />, // Menggeser GPU agar lebih ke bawah
   storage: (s) => <StorageModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,
   psu: (s) => <PSUModel3D scale={s} rotation={[0, 0, 0]} position={[0, 0, 0]} />,

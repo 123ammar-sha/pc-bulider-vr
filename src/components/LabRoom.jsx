@@ -140,9 +140,9 @@ export default function LabRoom() {
       {/* ── KURSI — pakai GLB ── */}
       {/* Kursi di meja utama */}
       <KursiModel3D
-        position={[-0.1, -1.2, 0.1]}
+        position={[-0.0, -1.2, 1.0]}
         rotation={[0, Math.PI, 0]}
-        scale={0.85}
+        scale={1.0}
       />
 
       {/* ── RAK DINDING ── */}

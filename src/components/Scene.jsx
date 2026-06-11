@@ -212,7 +212,7 @@ function CompletePanel() {
   }
 
   return (
-    <group position={[0, 2.6, -0.9]}>
+    <group position={[0, 2.4, -0.9]}>
       <mesh>
         <boxGeometry args={[2.2, 1.6, 0.02]} />
         <meshStandardMaterial color="#050d1a" transparent opacity={0.96} />
