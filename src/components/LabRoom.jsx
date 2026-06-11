@@ -105,10 +105,10 @@ export default function LabRoom() {
       {/* ── LANTAI ── */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.2, 0]} receiveShadow>
         <planeGeometry args={[12, 10]} />
-        <meshStandardMaterial color="#0e151e" roughness={0.9} metalness={0.1} />
+        <meshStandardMaterial color="#191d22" roughness={0.9} metalness={0.1} />
       </mesh>
       {/* Grid lantai */}
-      {/* <gridHelper args={[12, 24, '#1a2a3a', '#131d2a']} position={[0, -1.19, 0]} /> */}
+      {/* <gridHelper args={[12, 24, '#071324', '#071324']} position={[0, -1.19, 0]} /> */}
 
       {/* ── LANGIT-LANGIT ── */}
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 3.5, 0]} receiveShadow>
@@ -117,10 +117,10 @@ export default function LabRoom() {
       </mesh>
 
       {/* ── DINDING ── */}
-      <Wall position={[0, 1.2, -5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#363c44" />
-      <Wall position={[-6, 1.2, 0]} rotation={[0, Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#363c44" />
-      <Wall position={[6, 1.2, 0]} rotation={[0, -Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#363c44" />
-      <Wall position={[0, 1.2, 5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#363c44" />
+      <Wall position={[0, 1.2, -5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#484e56" />
+      <Wall position={[-6, 1.2, 0]} rotation={[0, Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#484e56" />
+      <Wall position={[6, 1.2, 0]} rotation={[0, -Math.PI / 2, 0]} size={[10, 5, 0.15]} color="#484e56" />
+      <Wall position={[0, 1.2, 5]} rotation={[0, 0, 0]} size={[12, 5, 0.15]} color="#484e56" />
 
       {/* ── LAMPU NEON ── */}
       <NeonLight position={[-2.5, 3.3, -2]} color="#ffffff" />
